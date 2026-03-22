@@ -1,6 +1,6 @@
 //Objects//
 const user = {
-firstname: 'Daniel'
+firstname: 'Daniel',
 lastname: 'Vanenge',
 age: 30,
 email: 'wuesedan5@gmail.com',
@@ -21,9 +21,8 @@ console.log("Full Name: " + getFullName(user));
 function haveBirthday(user) {
     user.age += 1;
 }
-this.age++;
-  },
-  console.log("Age after birthday: " + user.age);
+haveBirthday(user);
+console.log("Age after birthday: " + user.age);
 
 // Destructuring//
 const { firstname, lastname, age } = user;
