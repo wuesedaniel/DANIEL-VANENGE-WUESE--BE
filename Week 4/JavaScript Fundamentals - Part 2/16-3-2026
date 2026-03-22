@@ -1,0 +1,41 @@
+//DATE: 2026-03-15 
+//array//
+var arr = [1, 2, 3, 4, 5];
+console.log(arr);
+let firstElement = arr[0];
+console.log("First Element: " + firstElement);
+arr.push(6);
+console.log("Array after push: " + arr);
+arr.pop();
+console.log("Array after pop: " + arr);
+
+
+//loop//
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}   
+let sum = 0;
+for (var i = 0; i < arr.length; i++) {
+    sum += arr[i];
+}
+console.log("Sum: " + sum);
+let i=0;
+while (i < arr.length) {
+    console.log(arr[i]);
+    i++;
+}  
+let j = 0;do {
+    console.log(arr[j]);
+    j++;
+} while (j < arr.length);  
+
+
+//function//
+function add(a, b) {
+    return a + b;
+}   
+let result = add(5, 10);
+console.log("Result: " + result);
+const multiply = (a, b) => a * b;
+let product = multiply(5, 10);
+console.log("Product: " + product); 

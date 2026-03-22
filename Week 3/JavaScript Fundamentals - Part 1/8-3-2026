@@ -1,0 +1,714 @@
+// ======================================
+// 1. VARIABLE DECLARATIONS - Different Data Types
+// ======================================
+
+// Primitive Data Types
+const firstName = "Daniel";
+const lastName = "Vanenge";
+let age = 30;
+const email = "daniel.vanenge@gmail.com";
+let isActive = true;
+let joinDate = null;
+let bio = undefined;
+
+// Non-Primitive Data Types
+const hobbies = ["reading", "hiking", "coding"];
+const phoneNumber = 2347064474649;
+let balance = 2500.50;
+
+// Nested Object - User Profile
+const userProfile = {
+    username: "Wuese Vanenge",
+    email: "wuesevanenge@gmail.com",
+    age: 30,
+    isVerified: true,
+    hobbies: ["reading", "hiking", "coding"],
+    address: {
+        city: "Abuja",
+        zip: "901101",
+        country: "Nigeria"
+    },
+    socialLinks: {
+        twitter: "@wuese_dev",
+        github: "wuesedaniel"
+    }
+};
+
+// ======================================
+// 2. TYPE CHECKING WITH TYPEOF
+// ======================================
+console.log("firstName type:", typeof firstName);
+console.log("age type:", typeof age);
+console.log("isActive type:", typeof isActive);
+console.log("joinDate type:", typeof joinDate);
+console.log("bio type:", typeof bio);
+console.log("hobbies type:", typeof hobbies);
+console.log("phoneNumber type:", typeof phoneNumber);
+console.log("balance type:", typeof balance);
+console.log("userProfile type:", typeof userProfile);
+
+// Practical type checking examples
+console.log("\n--- Practical Type Checks ---");
+if (typeof firstName === "string") {
+    console.log("✓ firstName is a string");
+}
+
+if (typeof age === "number" && age >= 18) {
+    console.log("✓ User is an adult");
+}
+
+if (typeof isActive === "boolean") {
+    console.log("✓ isActive is a boolean");
+}
+
+if (Array.isArray(hobbies)) {
+    console.log("✓ hobbies is an array");
+}
+
+// ======================================
+// 3. TEMPLATE LITERALS
+// ======================================
+console.log("\n--- Template Literals ---");
+
+// Basic template literal
+const basicProfile = `${firstName} ${lastName}`;
+console.log("Basic profile:", basicProfile);
+
+// Template literal with expressions
+const profileSummary = `
+User Profile Summary:
+Name: ${firstName} ${lastName}
+Email: ${email}
+Age: ${age} years old
+Status: ${isActive ? "Active" : "Inactive"}
+Account Created: ${joinDate ? `${joinDate}` : "Date not set"}
+`;
+console.log(profileSummary);
+
+// Template literals with computation
+const num1 = 10;
+const num2 = 20;
+const sum = num1 + num2;
+const mathTemplate = `
+Math Operations:
+First Number: ${num1}
+Second Number: ${num2}
+Sum: ${sum}
+Product: ${num1 * num2}
+Average: ${(num1 + num2) / 2}
+`;
+console.log(mathTemplate);
+
+// Template literals with nested objects
+const detailedProfile = `
+${firstName}'s Complete Profile:
+├─ Email: ${userProfile.email}
+├─ Username: ${userProfile.username}
+├─ Verified: ${userProfile.isVerified ? "Yes ✓" : "No ✗"}
+├─ Hobbies: ${userProfile.hobbies.join(", ")}
+├─ Location: ${userProfile.address.city}, ${userProfile.address.country}
+└─ Social Media: ${userProfile.socialLinks.twitter} | ${userProfile.socialLinks.github}
+`;
+console.log(detailedProfile);
+
+// Template literals with array methods
+const hobbiesList = `
+Hobbies (${userProfile.hobbies.length}):
+${userProfile.hobbies.map((hobby, i) => `  ${i + 1}. ${hobby}`).join("\n")}
+`;
+console.log(hobbiesList);
+
+// ======================================
+// 4. TYPE COERCION - Implicit and Explicit
+// ======================================
+console.log("\n--- Type Coercion Examples ---");
+
+// Implicit Type Coercion (Automatic)
+console.log("\n• Implicit Type Coercion:");
+
+// String concatenation coerces number to string
+let implicitConcat = age + " years old";
+console.log(`${age} + " years old" = "${implicitConcat}" (type: ${typeof implicitConcat})`);
+
+// Arithmetic with strings coerces to number
+let implicitMath = "30" - 5;
+console.log(`"30" - 5 = ${implicitMath} (type: ${typeof implicitMath})`);
+
+// Boolean coercion in arithmetic
+let implicitBool = true + 5;
+console.log(`true + 5 = ${implicitBool} (true is coerced to 1)`);
+
+// String comparison coercion
+let implicitCompare = "10" == 10;
+console.log(`"10" == 10 = ${implicitCompare} (loose equality with coercion)`);
+
+// Explicit Type Coercion (Manual Conversion)
+console.log("\n• Explicit Type Coercion:");
+
+// String conversion
+let explicitString = String(age);
+console.log(`String(${age}) = "${explicitString}" (type: ${typeof explicitString})`);
+
+// Number conversion
+let explicitNumber = Number("25");
+console.log(`Number("25") = ${explicitNumber} (type: ${typeof explicitNumber})`);
+
+// Boolean conversion
+let explicitBool = Boolean(1);
+console.log(`Boolean(1) = ${explicitBool} (type: ${typeof explicitBool})`);
+
+// parseInt and parseFloat
+let stringAge = "30";
+let parsedInt = parseInt(stringAge);
+let parsedFloat = parseFloat("3.14");
+console.log(`parseInt("${stringAge}") = ${parsedInt}`);
+console.log(`parseFloat("3.14") = ${parsedFloat}`);
+
+// Template literal using explicit coercion
+const coercionTemplate = `
+Age (original): ${age} (${typeof age})
+Age (string coercion): ${String(age)} (${typeof String(age)})
+Balance (original): ${balance} (${typeof balance})
+Balance (string): ${String(balance)} (${typeof String(balance)})
+Is Active (original): ${isActive} (${typeof isActive})
+Is Active (string): ${String(isActive)} (${typeof String(isActive)})
+`;
+console.log(coercionTemplate);
+
+// ======================================
+// 5. COMPLETE USER PROFILE TEMPLATE
+// ======================================
+console.log("\n--- Complete User Profile ---");
+
+const completeProfile = `
+╔════════════════════════════════════════╗
+║       USER PROFILE INFORMATION         ║
+╠════════════════════════════════════════╣
+║ Name: ${firstName} ${lastName}
+║ Email: ${email}
+║ Age: ${age}
+║ Account Status: ${isActive ? "ACTIVE ✓" : "INACTIVE ✗"}
+║ Member Since: ${joinDate || "Not set"}
+║ Bio: ${bio || "No bio available"}
+║
+║ Hobbies (${hobbies.length}): ${hobbies.join(" • ")}
+║ Phone: +${phoneNumber}
+║ Balance: $${balance.toFixed(2)}
+║
+║ Location: ${userProfile.address.city}, ${userProfile.address.zip}, ${userProfile.address.country}
+║ Twitter: ${userProfile.socialLinks.twitter}
+║ GitHub: ${userProfile.socialLinks.github}
+║
+║ Verified: ${userProfile.isVerified ? "YES ✓" : "NO"}
+╚════════════════════════════════════════╝
+`;
+console.log(completeProfile);
+
+// ======================================
+// 6. GRADE CALCULATOR (IF/ELSE APPROACH)
+// ======================================
+console.log("\n========================================");
+console.log("GRADE CALCULATOR - IF/ELSE APPROACH");
+console.log("========================================\n");
+
+/**
+ * Function to calculate grade using IF/ELSE statements
+ * @param {number} score - Student score (0-100)
+ * @returns {object} - Object containing grade, letterGrade, and feedback
+ */
+function getGradeIfElse(score) {
+    // Grade calculation using if/else
+    let letterGrade;
+    let description;
+    let colorCode;
+
+    if (score >= 90) {
+        letterGrade = "A";
+        description = "Excellent";
+        colorCode = "🟢";
+    } else if (score >= 80) {
+        letterGrade = "B";
+        description = "Good";
+        colorCode = "🟢";
+    } else if (score >= 70) {
+        letterGrade = "C";
+        description = "Satisfactory";
+        colorCode = "🟡";
+    } else if (score >= 60) {
+        letterGrade = "D";
+        description = "Pass";
+        colorCode = "🟠";
+    } else {
+        letterGrade = "F";
+        description = "Fail";
+        colorCode = "🔴";
+    }
+
+    return {
+        success: true,
+        score: score,
+        letterGrade: letterGrade,
+        description: description,
+        colorCode: colorCode,
+        feedback: `Score ${score}/100 = ${letterGrade} (${description})`
+    };
+}
+
+// Test cases for IF/ELSE approach
+console.log("--- Testing IF/ELSE Grade Calculator ---\n");
+
+const testScoresIfElse = [95, 85, 75, 65, 55, 100, 0];
+
+testScoresIfElse.forEach(score => {
+    const result = getGradeIfElse(score);
+    console.log(`${result.colorCode} ${result.feedback}`);
+});
+
+// ======================================
+// 7. GRADE CALCULATOR (SWITCH APPROACH)
+// ======================================
+console.log("\n========================================");
+console.log("GRADE CALCULATOR - SWITCH APPROACH");
+console.log("========================================\n");
+
+/**
+ * Function to calculate grade using SWITCH statements
+ * @param {number} score - Student score (0-100)
+ * @returns {object} - Object containing grade, letterGrade, and feedback
+ */
+function getGradeSwitch(score) {
+    // Convert score to grade range (0-10 scale for switch)
+    const gradeRange = Math.floor(score / 10);
+
+    let letterGrade;
+    let description;
+    let colorCode;
+    let gradePoints;
+
+    // Using switch statement
+    switch (gradeRange) {
+        case 10:
+        case 9:
+            letterGrade = "A";
+            description = "Excellent";
+            colorCode = "🟢";
+            gradePoints = "4.0";
+            break;
+        case 8:
+            letterGrade = "B";
+            description = "Good";
+            colorCode = "🟢";
+            gradePoints = "3.0";
+            break;
+        case 7:
+            letterGrade = "C";
+            description = "Satisfactory";
+            colorCode = "🟡";
+            gradePoints = "2.0";
+            break;
+        case 6:
+            letterGrade = "D";
+            description = "Pass";
+            colorCode = "🟠";
+            gradePoints = "1.0";
+            break;
+        default:
+            letterGrade = "F";
+            description = "Fail";
+            colorCode = "🔴";
+            gradePoints = "0.0";
+    }
+
+    return {
+        success: true,
+        score: score,
+        letterGrade: letterGrade,
+        description: description,
+        colorCode: colorCode,
+        gradePoints: gradePoints,
+        feedback: `Score ${score}/100 = ${letterGrade} (${description}) | GPA: ${gradePoints}`
+    };
+}
+
+// Test cases for SWITCH approach
+console.log("--- Testing SWITCH Grade Calculator ---\n");
+
+const testScoresSwitch = [99, 89, 79, 69, 59, 100, 0];
+
+testScoresSwitch.forEach(score => {
+    const result = getGradeSwitch(score);
+    console.log(`${result.colorCode} ${result.feedback}`);
+});
+
+// ======================================
+// 8. ADVANCED GRADE CALCULATOR - BATCH PROCESSING
+// ======================================
+console.log("\n========================================");
+console.log("BATCH GRADE PROCESSING");
+console.log("========================================\n");
+
+/**
+ * Process multiple student grades and provide statistics
+ * @param {array} scores - Array of student scores
+ * @returns {object} - Statistics and individual results
+ */
+function processBatchGrades(scores) {
+    const results = scores.map(score => getGradeSwitch(score));
+
+    // Calculate statistics
+    const validScores = results.map(g => g.score);
+    const average = validScores.length > 0 ? validScores.reduce((a, b) => a + b, 0) / validScores.length : 0;
+    const highest = Math.max(...validScores);
+    const lowest = Math.min(...validScores);
+    const gradeDistribution = {};
+
+    results.forEach(grade => {
+        gradeDistribution[grade.letterGrade] = (gradeDistribution[grade.letterGrade] || 0) + 1;
+    });
+
+    return {
+        totalInputs: scores.length,
+        statistics: {
+            average: average.toFixed(2),
+            highest: highest,
+            lowestValid: lowest,
+            distribution: gradeDistribution
+        },
+        results: results
+    };
+}
+
+// Test batch processing
+const studentScores = [95, 87, 72, 91, 68, 78, 85, 92, 88];
+const batchResult = processBatchGrades(studentScores);
+
+const stats = batchResult.statistics;
+console.log(`Total Scores: ${batchResult.totalInputs}`);
+console.log(`\nStatistics:`);
+console.log(`  Average Score: ${stats.average}`);
+console.log(`  Highest Score: ${stats.highest}`);
+console.log(`  Lowest Score: ${stats.lowestValid}`);
+console.log(`  Grade Distribution:`);
+Object.keys(stats.distribution).sort().forEach(grade => {
+    console.log(`    ${grade}: ${stats.distribution[grade]} student(s)`);
+});
+
+// ======================================
+// 9. INTERACTIVE GRADE LOOKUP
+// ======================================
+console.log("\n========================================");
+console.log("GRADE SCALE REFERENCE");
+console.log("========================================\n");
+
+const gradeScale = {
+    "A": { range: "90-100", gpa: "4.0", description: "Excellent Performance" },
+    "B": { range: "80-89", gpa: "3.0", description: "Good Performance" },
+    "C": { range: "70-79", gpa: "2.0", description: "Satisfactory Performance" },
+    "D": { range: "60-69", gpa: "1.0", description: "Passing Performance" },
+    "F": { range: "0-59", gpa: "0.0", description: "Failed - Below Passing" }
+};
+
+console.log("Grade Scale Reference:\n");
+Object.entries(gradeScale).forEach(([grade, info]) => {
+    console.log(`${grade}: ${info.range} | GPA: ${info.gpa} | ${info.description}`);
+});
+
+// ======================================
+// 10. STRING MANIPULATION FUNCTIONS
+// ======================================
+console.log("\n========================================");
+console.log("STRING MANIPULATION FUNCTIONS");
+console.log("========================================\n");
+
+/**
+ * Convert a string to title case
+ * First letter of each word capitalized, rest lowercase
+ * @param {string} str - Input string
+ * @returns {string} - Title cased string or error message
+ */
+function toTitleCase(str) {
+    // Input validation
+    if (typeof str !== "string") {
+        return `ERROR: Expected string, received ${typeof str}`;
+    }
+
+    if (str.length === 0) {
+        return ""; // Empty string remains empty
+    }
+
+    // Split by spaces, capitalize first letter of each word, join back
+    return str
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(" ");
+}
+
+/**
+ * Count vowels in a string
+ * Counts both uppercase and lowercase vowels (a, e, i, o, u)
+ * @param {string} str - Input string
+ * @returns {object} - Count breakdown and total
+ */
+function countVowels(str) {
+    // Input validation
+    if (typeof str !== "string") {
+        return {
+            error: `Expected string, received ${typeof str}`,
+            success: false
+        };
+    }
+
+    // Convert to lowercase for counting
+    const lowerStr = str.toLowerCase();
+    const vowels = ["a", "e", "i", "o", "u"];
+    
+    // Count each vowel individually
+    const vowelCount = {
+        a: 0,
+        e: 0,
+        i: 0,
+        o: 0,
+        u: 0,
+        total: 0
+    };
+
+    // Iterate through string and count vowels
+    for (let i = 0; i < lowerStr.length; i++) {
+        const char = lowerStr[i];
+        if (vowels.includes(char)) {
+            vowelCount[char]++;
+            vowelCount.total++;
+        }
+    }
+
+    return {
+        success: true,
+        original: str,
+        length: str.length,
+        vowelBreakdown: {
+            a: vowelCount.a,
+            e: vowelCount.e,
+            i: vowelCount.i,
+            o: vowelCount.o,
+            u: vowelCount.u
+        },
+        totalVowels: vowelCount.total,
+        consonantCount: str.length - vowelCount.total,
+        vowelPercentage: ((vowelCount.total / str.length) * 100).toFixed(2) + "%"
+    };
+}
+
+/**
+ * Reverse a string
+ * Multiple reversal methods available
+ * @param {string} str - Input string
+ * @param {string} method - Method: 'split', 'array', or 'loop'
+ * @returns {object} - Reversed string and method info
+ */
+function reverseString(str, method = "split") {
+    // Input validation
+    if (typeof str !== "string") {
+        return {
+            error: `Expected string, received ${typeof str}`,
+            success: false
+        };
+    }
+
+    if (str.length === 0) {
+        return {
+            success: true,
+            original: str,
+            reversed: "",
+            method: method,
+            length: 0
+        };
+    }
+
+    let reversed;
+
+    // Different reversal methods
+    switch (method.toLowerCase()) {
+        case "split":
+            // Method 1: split(), reverse(), join()
+            reversed = str.split("").reverse().join("");
+            break;
+        
+        case "array":
+            // Method 2: Spread operator with array methods
+            reversed = [...str].reverse().join("");
+            break;
+        
+        case "loop":
+            // Method 3: Traditional for loop
+            reversed = "";
+            for (let i = str.length - 1; i >= 0; i--) {
+                reversed += str[i];
+            }
+            break;
+        
+        default:
+            return {
+                error: `Unknown method "${method}". Use 'split', 'array', or 'loop'`,
+                success: false
+            };
+    }
+
+    return {
+        success: true,
+        original: str,
+        reversed: reversed,
+        method: method,
+        length: str.length,
+        isPalindrome: str.toLowerCase() === reversed.toLowerCase()
+    };
+}
+
+// ======================================
+// 10A. TITLE CASE TESTS
+// ======================================
+console.log("--- TITLE CASE CONVERTER ---\n");
+
+const titleCaseTests = [
+    "hello world from javascript",
+    "the quick brown fox jumps over the lazy dog",
+    "cybersecurity is important",
+    "wuese vanenge",
+    "daniel",
+    "",
+    "a",
+    "UPPERCASE TEXT"
+];
+
+titleCaseTests.forEach(test => {
+    const result = toTitleCase(test);
+    console.log(`Input:  "${test}"`);
+    console.log(`Output: "${result}"\n`);
+});
+
+
+// ======================================
+// 10B. VOWEL COUNTER TESTS
+// ======================================
+console.log("--- VOWEL COUNTER ---\n");
+
+const vowelTests = [
+    "Hello World",
+    "JavaScript",
+    "Programming",
+    "Beautiful",
+    "a e i o u",
+    "bcdfg",
+    "AEIOU",
+    "Cybersecurity"
+];
+
+vowelTests.forEach(test => {
+    const result = countVowels(test);
+    if (result.success) {
+        console.log(`Text: "${result.original}"`);
+        console.log(`  Total Vowels: ${result.totalVowels} | Consonants: ${result.consonantCount}`);
+        console.log(`  Breakdown: A=${result.vowelBreakdown.a}, E=${result.vowelBreakdown.e}, I=${result.vowelBreakdown.i}, O=${result.vowelBreakdown.o}, U=${result.vowelBreakdown.u}`);
+        console.log(`  Vowel Percentage: ${result.vowelPercentage}\n`);
+    } else {
+        console.log(`ERROR: ${result.error}\n`);
+    }
+});
+
+// ======================================
+// 10C. STRING REVERSAL TESTS
+// ======================================
+console.log("--- STRING REVERSAL ---\n");
+
+const reverseTests = [
+    "hello",
+    "racecar",
+    "JavaScript",
+    "A man, a plan, a canal: Panama",
+    "12345",
+    "Cybersecurity",
+    "madam"
+];
+
+reverseTests.forEach(test => {
+    const result = reverseString(test, "split");
+    if (result.success) {
+        const palindromeStatus = result.isPalindrome ? " ✓ PALINDROME!" : "";
+        console.log(`Original:  "${result.original}"`);
+        console.log(`Reversed:  "${result.reversed}"${palindromeStatus}\n`);
+    }
+});
+
+// ======================================
+// 10D. REVERSAL METHOD COMPARISON
+// ======================================
+console.log("--- REVERSAL METHOD COMPARISON ---\n");
+
+const testString = "Hello World";
+console.log(`Test String: "${testString}"\n`);
+
+["split", "array", "loop"].forEach(method => {
+    const result = reverseString(testString, method);
+    if (result.success) {
+        console.log(`Method '${method}': "${result.reversed}"`);
+    }
+});
+
+// ======================================
+// 10E. COMBINED STRING UTILITIES
+// ======================================
+console.log("\n--- COMBINED STRING UTILITIES ---\n");
+
+/**
+ * Complete string analysis function
+ * @param {string} str - Input string
+ * @returns {object} - Comprehensive analysis
+ */
+function analyzeString(str) {
+    if (typeof str !== "string") {
+        return {
+            error: `Expected string, received ${typeof str}`,
+            success: false
+        };
+    }
+
+    const titleCased = toTitleCase(str);
+    const vowelInfo = countVowels(str);
+    const reversed = reverseString(str, "split");
+
+    return {
+        success: true,
+        original: str,
+        length: str.length,
+        uppercase: str.toUpperCase(),
+        lowercase: str.toLowerCase(),
+        titleCase: titleCased,
+        reversed: reversed.reversed,
+        isPalindrome: reversed.isPalindrome,
+        wordCount: str.trim().split(/\s+/).length,
+        vowelStatistics: vowelInfo.success ? {
+            total: vowelInfo.totalVowels,
+            percentage: vowelInfo.vowelPercentage,
+            breakdown: vowelInfo.vowelBreakdown
+        } : null
+    };
+}
+
+// Test combined analysis
+const analysisStrings = [
+    "JavaScript Programming",
+    "Cybersecurity",
+    "radar"
+];
+
+analysisStrings.forEach(str => {
+    const analysis = analyzeString(str);
+    if (analysis.success) {
+        console.log(`String Analysis: "${analysis.original}"`);
+        console.log(`  Length: ${analysis.length} characters`);
+        console.log(`  Words: ${analysis.wordCount}`);
+        console.log(`  Title Case: ${analysis.titleCase}`);
+        console.log(`  Reversed: ${analysis.reversed}${analysis.isPalindrome ? " (PALINDROME)" : ""}`);
+        console.log(`  Vowels: ${analysis.vowelStatistics.total} (${analysis.vowelStatistics.percentage})`);
+        console.log("");
+    }
+});

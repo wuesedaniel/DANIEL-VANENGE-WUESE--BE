@@ -1,0 +1,52 @@
+//Objects//
+const user = {
+firstname: 'Daniel'
+lastname: 'Vanenge',
+age: 30,
+email: 'wuesedan5@gmail.com',
+address: {
+street: '10 Ingawa St',
+city: 'Kubwa',
+state: 'Abuja',
+hobbies: ['coding', 'gaming', 'traveling']  
+}
+};
+ // Returns the full name by combining first and last name
+function getFullName(user) {
+    return user.firstname + ' ' + user.lastname;
+}  
+console.log("Full Name: " + getFullName(user));
+
+ // Increases age property by 1
+function haveBirthday(user) {
+    user.age += 1;
+}
+this.age++;
+  },
+  console.log("Age after birthday: " + user.age);
+
+// Destructuring//
+const { firstname, lastname, age } = user;
+console.log("First Name: " + firstname);
+console.log("Last Name: " + lastname);
+console.log("Age: " + age);
+// Spread Operator//
+const user2 = { ...user, email: 'mr.gigabyteprints@gmail.com' };
+console.log("User 2: ", user2);
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combinedArr = [...arr1, ...arr2];
+console.log("Combined Array: ", combinedArr);
+
+//cloning an object using spread operator
+const clonedUser = { ...user };
+console.log("Cloned User: ", clonedUser);
+const clonedArr = [...arr1];
+console.log("Cloned Array: ", clonedArr);  
+
+//merging objects using spread operator
+const user3 = { ...user, ...user2 };
+console.log("Merged User: ", user3);
+//careful with spread operator as it does a shallow copy, nested objects will still reference the same memory location
+const user4 = { ...user, address: { ...user.address } };
+console.log("User 4 with cloned address: ", user4);
