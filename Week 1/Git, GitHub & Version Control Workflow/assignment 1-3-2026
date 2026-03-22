@@ -1,48 +1,58 @@
-1. Git Fundamentals
-Focus on setting up a local environment and understanding the core cycle of tracking changes. 
-Coursera
-Coursera
- +1
-Initialize a Repository: Create a new project folder and use git init to start tracking it.
-README & Learning Goals: Create a README.md file to document your project's purpose and your specific learning objectives.
-Conventional Commits: Practice making "atomic" commits (one logical change at a time). Follow the Conventional Commits format (e.g., feat: add login logic or docs: update README) to keep history readable.
-Branch Management: Use git checkout -b <branch-name> to create new branches for specific features or experiments, keeping your main branch stable. 
-GitHub
-GitHub
- +6
-2. GitHub Workflow
-Move your local work to the cloud and practice the standard industry workflow. 
-Medium
-Medium
- +2
-Backend-Journey Repo: Create a new repository on GitHub and link it to your local machine using git remote add origin <url>.
-The .gitignore File: Add a .gitignore file to prevent tracking sensitive or unnecessary files (like node_modules or .env).
-Pull Request (PR) Workflow: Push a feature branch to GitHub, open a Pull Request to merge it into main, and practice reviewing your own code before merging. 
-Medium
-Medium
- +5
-3. Collaboration Practice
-Simulate working on a team or contributing to the open-source community. 
-YouTube
-YouTube
- +1
-Forking: Find an interesting repository on GitHub and click "Fork" to create your own copy.
-Improvements: Clone your fork, make a meaningful improvement (like fixing a typo or adding a comment), and push it to your fork.
-Contribution: Submit a Pull Request from your fork back to the original repository.
-Exploration: Use GitHub's file browser to study how experienced developers structure their folders and name their variables. 
-YouTube
-YouTube
- +3
-4. Git Challenge
-Master advanced troubleshooting and history navigation tools. 
-GitHub
-GitHub
- +1
-Resolve Merge Conflicts: Intentionally modify the same line of code on two different branches and merge them to practice manually picking the correct version.
-Explore History:
+1. # Git Fundamentals (Local Environment)
+Focus on setting up a local environment and understanding the core cycle of tracking changes.
+
+## Initialize a Repository
+* Create a new project folder: mkdir backend-journey && cd backend-journey.
+* Start tracking: git init
+
+## README & Learning Goals:
+Create a README.md file (touch README.md) to document your project's purpose and your specific learning objectives.
+
+## Conventional Commits:
+* Practice making "atomic" commits (one logical change at a time). Use the format: <type>: <description> (e.g., feat: add login logic or docs: update README).
+
+* Branch Management: Use git checkout -b <branch-name> to create new branches for specific features or experiments, keeping your main branch stable. 
+
+2. # GitHub Workflow (Cloud Integration)
+Move your local work to the cloud and practice the standard industry workflow.
+### * Backend-Journey Repo: Create a new repository on GitHub.
+### * Link Local to Remote: git remote add origin <url>.
+### * The .gitignore File: Create a .gitignore file to prevent tracking sensitive or unnecessary files (e.g., node_modules, .env, .DS_Store).
+
+### * Pull Request (PR) Workflow:
+### * Push feature branch: git push -u origin <feature-branch>.
+### * Open a Pull Request to merge it into main on GitHub.
+### * Review your own code/changes before merging. 
+
+3. # Collaboration Practice
+Simulate working on a team or contributing to the open-source community.
+
+##  Forking: 
+Find an interesting repository on GitHub and click "Fork" to create your own copy.
+
+## Improvements: 
+Clone your fork (git clone <your-fork-url>), make a meaningful improvement (e.g., fix a typo, add a comment), and push it to your fork.
+
+## Contribution: 
+Submit a Pull Request from your fork back to the original repository ("upstream").
+
+## Exploration: 
+Use GitHub's file browser to study how experienced developers structure their folders and name their variables. 
+
+4. # Git Challenge (Advanced Troubleshooting)
+Master advanced troubleshooting and history navigation tools.
+
+## Resolve Merge Conflicts: 
+Intentionally modify the same line of code on two different branches and merge them to practice manually picking the correct version.
+
+## * Tools: git status to find conflicts, git diff to view differences, and manual editing to remove <<<<<<<, =======, >>>>>>> markers.
+
+## Explore History:
 git log --oneline: View a simplified history of all commits.
-git diff: Compare changes between your working directory and the last commit.
-git blame <file>: See exactly who changed which line and when.
-Undo Changes:
-git revert <hash>: Create a new commit that undoes the changes of a previous one (safe for shared history).
-git reset: Move your branch pointer back to a previous state (use with caution, as it can delete history).
+## git diff: Compare changes between your working directory and the last commit.
+
+## git blame <file>: See exactly who changed which line and when.
+
+## Undo Changes:
+## git revert <hash>: Create a new commit that undoes the changes of a previous one (safe for shared history).
+## git reset --hard <hash>
