@@ -1,32 +1,34 @@
 //Today's Focus// 
 
-Backend development fundamentals
-Git installation/github signup
-Repository setup and git workflow
+### Today's Focus
+- Backend development fundamentals
+- Git installation/github signup
+- Repository setup and git workflow
 
-//What I Learned//
-Created backend-journey repository structure
-Set up .gitignore for backend development
-Practiced git initialization and workflow
-Git Commands like gitignore, git add, git add "", git status, commit etc
-Git bash and Github
+### What I Learned
+- Created backend-journey repository structure
+- Set up .gitignore for backend development
+- Practiced git initialization and workflow
+- Git Commands like gitignore, git add, git add "", git status, commit etc
+- Git bash and Github
 
-//Key Takeaways//
-Understanding project structure organization
-Git workflow best practices
-Setting up clean development environment
 
-//Tasks Completed//
- Initialize backend-journey repository
- Add .gitignore file
- Create daily learning log template
+### Key Takeaways
+- Understanding project structure organization
+- Git workflow best practices
+- Setting up clean development environment
 
-//Tomorrow's Goals//
-Practice pull request workflow
-Create initial project files
-Set up branching strategy
+### Tasks Completed
+- [x] Initialize backend-journey repository
+- [x] Add .gitignore file
+- [x] Create daily learning log template
 
-//Challenges/Notes//
-None at this time
+### Tomorrow's Goals
+- Practice pull request workflow
+- Create initial project files
+- Set up branching strategy
+
+### Challenges/Notes
+- None of the challenges at this time
 
 

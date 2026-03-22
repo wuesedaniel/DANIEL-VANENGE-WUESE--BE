@@ -1,6 +1,4 @@
-//git.ignore//
 # Backend Development Gitignore
-# This file specifies which files and directories should not be tracked by git
 
 # Node.js dependencies
 node_modules/
@@ -33,5 +31,5 @@ dist/
 build/
 *.log
 
-# OS files
+# OS file
 Thumbs.db
