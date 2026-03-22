@@ -1,11 +1,11 @@
-1. # Git Fundamentals (Local Environment)
+1. # Git Fundamentals (Local Environment)# 
 Focus on setting up a local environment and understanding the core cycle of tracking changes.
 
-## Initialize a Repository
+## Initialize a Repository ##
 * Create a new project folder: mkdir backend-journey && cd backend-journey.
 * Start tracking: git init
 
-## README & Learning Goals:
+## README & Learning Goals:##
 Create a README.md file (touch README.md) to document your project's purpose and your specific learning objectives.
 
 ## Conventional Commits:
