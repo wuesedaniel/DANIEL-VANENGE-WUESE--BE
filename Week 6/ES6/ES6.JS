@@ -1,1 +1,0 @@
-//Traditonal Function//
