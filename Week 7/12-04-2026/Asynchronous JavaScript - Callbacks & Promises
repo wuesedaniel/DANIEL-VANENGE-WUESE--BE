@@ -1,0 +1,371 @@
+//Asynchronous JavaScript - Callbacks & Promises
+//asynchronous operations with callbacks
+function fetchData(callback) {
+    setTimeout(() => {
+        const data = { id: 1, name: 'John Doe' };
+        callback(null, data);
+    }, 10000);
+}
+fetchData((error, data) => {
+    if (error) {
+        console.error("Error fetching data: ", error);
+    } else {
+        console.log("Data fetched: ", data);
+    }
+});
+//asynchronous operations with promises
+function fetchDataPromise() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data = { id: 1, name: 'John Doe' };
+            resolve(data);
+        }, 10000);
+    });
+}
+fetchDataPromise()
+    .then(data => {
+        console.log("Data fetched with promise: ", data);
+    })
+    .catch(error => {
+        console.error("Error fetching data with promise: ", error);
+    });
+    const fetchDataAsync = async () => {
+    try {
+        const data = await fetchDataPromise();
+        console.log("Data fetched with async/await: ", data);
+    } catch (error) {
+        console.error("Error fetching data with async/await: ", error);
+    }   
+};
+fetchDataAsync();
+
+//callback hell with nested callbacks
+function fetchData1(callback) {
+    setTimeout(() => {
+        const data1 = { id: 1, name: 'Wuese Daniel' };
+        callback(null, data1);
+    }, 10000);
+}
+function fetchData2(data1, callback) {
+    setTimeout(() => {
+        const data2 = { id: 2, name: 'Angel Daniel', parent: data1 };
+        callback(null, data2);
+    }, 10000);
+}
+function fetchData3(data2, callback) {
+    setTimeout(() => {
+        const data3 = { id: 3, name: 'Daniel Jr', parent: data2 };
+        callback(null, data3);
+    }, 10000);
+}
+fetchData1((error, data1) => {
+    if (error) {
+        console.error("Error fetching data1: ", error);
+    } else {
+        fetchData2(data1, (error, data2) => {
+            if (error) {
+                console.error("Error fetching data2: ", error);
+            } else {
+                fetchData3(data2, (error, data3) => {
+                    if (error) {
+                        console.error("Error fetching data3: ", error);
+                    } else {
+                        console.log("All data fetched: ", data3);
+                    }
+                });
+            }
+        });
+    }
+});
+
+
+//refactoring callback hell with promises
+function fetchData1Promise() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data1 = { id: 1, name: 'Wuese Daniel' };
+            resolve(data1);
+        }, 10000);
+    });
+}
+function fetchData2Promise(data1) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data2 = { id: 2, name: 'Angel Daniel', parent: data1 };
+            resolve(data2);
+        }, 10000);
+    });
+}
+function fetchData3Promise(data2) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data3 = { id: 3, name: 'Daniel Jr', parent: data2 };
+            resolve(data3);
+        }, 10000);
+    });
+}
+fetchData1Promise()
+    .then(data1 => fetchData2Promise(data1))
+    .then(data2 => fetchData3Promise(data2))
+    .then(data3 => {
+        console.log("All data fetched with promises: ", data3);
+    })
+    .catch(error => {
+        console.error("Error fetching data with promises: ", error);
+    });
+
+    //implement error-first callbacks pattern
+function fetchDataWithError(callback) {
+    setTimeout(() => {
+        const error = new Error("Failed to fetch data");
+        callback(error, null);
+    }, 10000); 
+}
+fetchDataWithError((error, data) => {
+    if (error) {
+        console.error("Error fetching data: ", error);
+    } else {
+        console.log("Data fetched: ", data);
+    }
+});
+
+//process payment with callbacks
+function processPayment(amount, callback) {
+    setTimeout(() => {
+        if (amount > $200) {
+            callback(null, { success: true, message: "Payment processed successfully" });
+        } else {
+            callback(new Error("Payment amount is too low"), null);
+        }
+    }, 10000);
+}
+console.log("Processing payment...");
+
+processPayment(250, (error, result) => {
+    if (error) {
+        console.error("Error processing payment: ", error);
+    } else {        console.log("Payment result: ", result);
+    }
+});
+
+//process payment with promises
+function processPaymentPromise(amount) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (amount > $200) {
+                resolve({ success: true, message: "Payment processed successfully" });  
+            } else {
+                reject(new Error("Payment amount is too low"));
+            }
+        }, 10000);
+    });
+}
+processPaymentPromise(250)
+    .then(result => {
+        console.log("Payment result with promise: ", result);
+    })
+    .catch(error => {
+        console.error("Error processing payment with promise: ", error);
+    });
+    console.log("This will log before the payment result due to asynchronous nature of JavaScript");
+
+
+    //process payment with async/await
+const processPaymentAsync = async (amount) => {
+    try {
+        const result = await processPaymentPromise(amount);
+        console.log("Payment result with async/await: ", result);
+    } catch (error) {
+        console.error("Error processing payment with async/await: ", error);
+    }
+};
+processPaymentAsync(250);
+console.log("This will log before the payment result due to asynchronous nature of JavaScript");
+
+
+//handling multiple asynchronous operations with Promise.all
+function fetchUserData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({ id: 1, name: 'Wuese Daniel' });
+        }
+        , 10000);
+    });
+}
+function fetchUserPosts() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve([{ id: 1, title: 'Post 1' }, { id: 2, title: 'Post 2' }]);
+        }, 10000);
+    });
+}
+function fetchUserComments() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve([{ id: 1, comment: 'Great post!' }, { id: 2, comment: 'Thanks for sharing!' }]);
+        }, 10000);
+    });
+}   
+Promise.all([fetchUserData(), fetchUserPosts(), fetchUserComments()])
+    .then(([userData, userPosts, userComments]) => {
+        console.log("User Data: ", userData);
+        console.log("User Posts: ", userPosts);
+        console.log("User Comments: ", userComments);
+    })
+    .catch(error => {
+        console.error("Error fetching data: ", error);
+    });
+
+
+    //simple event emitter implementation
+class EventEmitter {
+    constructor() {
+        this.events = {};
+    }
+
+    on(event, listener) {
+        if (!this.events[event]) {
+            this.events[event] = [];
+        }
+        this.events[event].push(listener);
+    }
+
+    emit(event, data) {
+        if (this.events[event]) {
+            this.events[event].forEach(listener => listener(data));
+        }
+    }
+}
+const emitter = new EventEmitter();
+emitter.on('dataReceived', (data) => {
+    console.log("Data received event: ", data);
+});
+emitter.emit('dataReceived', { id: 1, name: 'Wuese Daniel' });
+console.log("This will log before the data received event due to asynchronous nature of JavaScript");
+
+//scratch promise implementation
+class MyPromise {
+    constructor(executor) {
+        this.state = 'pending';
+        this.value = null;
+        this.reason = null;
+        this.onFulfilledCallbacks = [];
+        this.onRejectedCallbacks = [];
+        const resolve = (value) => {
+            if (this.state === 'pending') {
+                this.state = 'fulfilled';
+                this.value = value;
+                this.onFulfilledCallbacks.forEach(callback => callback(value));
+            }
+        };
+        const reject = (reason) => {
+            if (this.state === 'pending') {
+                this.state = 'rejected';
+                this.reason = reason;
+                this.onRejectedCallbacks.forEach(callback => callback(reason));
+            }
+        };
+        try {
+            executor(resolve, reject);
+        } catch (error) {
+            reject(error);
+        }
+    }
+    then(onFulfilled, onRejected) {
+        if (this.state === 'fulfilled') {
+            onFulfilled(this.value);
+        } else if (this.state === 'rejected') {
+            onRejected(this.reason);
+        } else {
+            this.onFulfilledCallbacks.push(onFulfilled);
+            this.onRejectedCallbacks.push(onRejected);
+        }
+    }
+}
+const myPromise = new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Promise resolved successfully");
+    }, 10000);
+});
+myPromise.then(result => {
+    console.log("MyPromise result: ", result);
+}, error => {    console.error("MyPromise error: ", error);
+});
+console.log("This will log before the MyPromise result due to asynchronous nature of JavaScript");
+
+
+//callback based functions to promise based functions
+function fetchDataCallback(callback) {
+    setTimeout(() => {
+        const data = { id: 1, name: 'Wuese Daniel' };
+        callback(null, data);
+    }, 10000);
+}
+function fetchDataPromise() {
+    return new Promise((resolve, reject) => {
+        fetchDataCallback((error, data) => {
+            if (error) {
+                reject(error);
+            } else {                resolve(data);
+            }        });
+    });
+}
+fetchDataPromise()
+    .then(data => {
+        console.log("Data fetched with promise: ", data);
+    })
+    .catch(error => {
+        console.error("Error fetching data with promise: ", error);
+    });
+console.log("This will log before the data fetched with promise due to asynchronous nature of JavaScript");
+
+
+//chaining promises with error handling
+function fetchDataWithErrorPromise() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const error = new Error("Failed to fetch data");
+            reject(error);
+        }, 10000);
+    });
+}
+fetchDataWithErrorPromise()
+    .then(data => {
+        console.log("Data fetched: ", data);
+    })
+    .catch(error => {
+        console.error("Error fetching data: ", error);
+        return "Default data"; // Return default data to continue the chain
+    })
+    .then(data => {
+        console.log("Data after error handling: ", data);
+    });
+
+//async/await with error handling
+const fetchDataWithErrorAsync = async () => {
+    try {        const data = await fetchDataWithErrorPromise();
+        console.log("Data fetched with async/await: ", data);
+    } catch (error) {
+        console.error("Error fetching data with async/await: ", error);
+        return "Default data"; // Return default data to continue the chain
+    }
+};
+fetchDataWithErrorAsync()
+    .then(data => {
+        console.log("Data after error handling with async/await: ", data);
+    });
+    console.log("This will log before the data fetched with async/await due to asynchronous nature of JavaScript");
+
+    //handling multiple asynchronous operations with async/await
+const fetchMultipleDataAsync = async () => {
+    try {
+        const [userData, userPosts, userComments] = await Promise.all([fetchUserData(), fetchUserPosts(), fetchUserComments()]); 
+        console.log("User Data: ", userData);
+        console.log("User Posts: ", userPosts);
+        console.log("User Comments: ", userComments);
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    }
+};
+fetchMultipleDataAsync();
+console.log("This will log before the multiple data fetched with async/await due to asynchronous nature of JavaScript");

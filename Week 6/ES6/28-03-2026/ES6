@@ -25,13 +25,13 @@ const person = {
 person.greet(); // Output: Hello, my name is Alice
 
 //Using Arrow Function
-const person = {
+const person2 = {
     name: 'Alice',
     greet: () => {
         console.log(`Hello, my name is ${this.name}`);
     }
 };
-person.greet(); // Output: Hello, my name is undefined
+person2.greet(); // Output: Hello, my name is undefined
 
 //In the arrow function, 'this' does not refer to the person object, but to the global context, which is why it returns undefined. Arrow functions do not have their own 'this' and instead inherit it from the surrounding scope.
 function Person(name) {
@@ -74,21 +74,21 @@ alice.greet(); // Output: Hello, my name is undefined
 //In summary, while arrow functions provide a concise syntax, they do not have their own 'this' context and are not suitable for methods that rely on 'this' to refer to the object instance. Traditional function expressions or declarations should be used in such cases to ensure the correct context is maintained.
 
 //arrow functions with objects
-const person = {
+const person3 = {
     name: 'Alice',
     greet: function() {
         console.log(`Hello, my name is ${this.name}`);
     }
 };
-person.greet(); // Output: Hello, my name is Alice
+person3.greet(); // Output: Hello, my name is Alice
 //Using Arrow Function
-const person = {
+const person4 = {
     name: 'Alice',
     greet: () => {
         console.log(`Hello, my name is ${this.name}`);
     }
 };
-person.greet(); // Output: Hello, my name is undefined
+person4.greet(); // Output: Hello, my name is undefined
 //In the arrow function, 'this' does not refer to the person object, but to the global context, which is why it returns undefined. Arrow functions do not have their own 'this' and instead inherit it from the surrounding scope. Therefore, when using arrow functions as methods in objects, they will not have access to the object's properties through 'this'.
 
 //Arrow functions with no parameters
@@ -113,20 +113,20 @@ const add = (a, b) => {
 console.log(add(2, 3)); // Output: 5
 
 //Arrow functions and 'this' context
-const person = {
+const person5 = {
     name: 'Alice',
     greet: function() {
         console.log(`Hello, my name is ${this.name}`);
     }
 };
-person.greet(); // Output: Hello, my name is Alice
+person5.greet(); // Output: Hello, my name is Alice
 //Using Arrow Function
-const person = {    name: 'Alice',
+const person6 = {    name: 'Alice',
     greet: () => {
         console.log(`Hello, my name is ${this.name}`);
     }
 };
-person.greet(); // Output: Hello, my name is undefined
+person6.greet(); // Output: Hello, my name is undefined
 //In the arrow function, 'this' does not refer to the person object, but to the global context, which is why it returns undefined. Arrow functions do not have their own 'this' and instead inherit it from the surrounding scope. Therefore, when using arrow functions as methods in objects, they will not have access to the object's properties through 'this'.
 
 //single paremeter with parentheses
@@ -285,15 +285,15 @@ console.log(street); // Output: 123 Main St
 //In summary, ES6 introduced several modern syntax features that enhance the readability and functionality of JavaScript code. These features include let and const for variable declaration, template literals for string interpolation, destructuring assignment for extracting values from objects and arrays, default parameters for function arguments, the spread operator for combining arrays and objects, optional chaining for safe property access, and the nullish coalescing operator for handling null or undefined values. By utilizing these features, developers can write cleaner and more efficient code in JavaScript.
 
 //combining for safe property access and default values
-const person = {
+const person7 = {
     name: 'Alice',
     address: {
         street: '123 Main St',
         city: 'Anytown'
     }
 };
-const { name, age } = person;
-const street = person.address?.street ?? 'Address not available';
+const { name, age } = person7;
+const street = person7.address?.street ?? 'Address not available';
 console.log(name); // Output: Alice
 console.log(age); // Output: 30
 console.log(street); // Output: 123 Main St
