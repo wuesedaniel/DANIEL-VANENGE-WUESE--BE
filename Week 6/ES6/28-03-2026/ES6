@@ -16,13 +16,13 @@ return a + b;
 console.log(add(2, 3)); // Output: 5
 
 //Arrow Functions and Context
-const person = {
+const person1 = {
     name: 'Alice',
     greet: function() {
         console.log(`Hello, my name is ${this.name}`);
     }
 };
-person.greet(); // Output: Hello, my name is Alice
+person1.greet(); // Output: Hello, my name is Alice
 
 //Using Arrow Function
 const person2 = {
@@ -49,8 +49,8 @@ function Person(name) {
 Person.prototype.greet = () => {
     console.log(`Hello, my name is ${this.name}`);
 };
-const alice = new Person('Alice');
-alice.greet(); // Output: Hello, my name is undefined
+const alice2 = new Person('Alice');
+alice2.greet(); // Output: Hello, my name is undefined
 //In this case, the arrow function does not have its own 'this' and inherits it from the global context, which is why it returns undefined. Arrow functions are not suitable for methods that rely on 'this' to refer to the object instance.
 function Person(name) {
     this.name = name;
@@ -58,8 +58,8 @@ function Person(name) {
         console.log(`Hello, my name is ${this.name}`);
     };
 }
-const alice = new Person('Alice');
-alice.greet(); // Output: Hello, my name is Alice
+const alice3 = new Person('Alice');
+alice3.greet(); // Output: Hello, my name is Alice
 //Using Arrow Function for Methods
 function Person(name) {
     this.name = name;
@@ -67,8 +67,8 @@ function Person(name) {
         console.log(`Hello, my name is ${this.name}`);
     };
 }
-const alice = new Person('Alice');
-alice.greet(); // Output: Hello, my name is undefined
+const alice4 = new Person('Alice');
+alice4.greet(); // Output: Hello, my name is undefined
 //In this case, the arrow function does not have its own 'this' and inherits it from the global context, which is why it returns undefined. Arrow functions are not suitable for methods that rely on 'this' to refer to the object instance.
 
 //In summary, while arrow functions provide a concise syntax, they do not have their own 'this' context and are not suitable for methods that rely on 'this' to refer to the object instance. Traditional function expressions or declarations should be used in such cases to ensure the correct context is maintained.
@@ -231,14 +231,14 @@ const y = 20;
 x = 15; // Valid
 //y = 25; // Error: Assignment to constant variable
 //Template Literals
-const name = 'Alice';
-const greeting = `Hello, ${name}!`;
+const name1 = 'Alice';
+const greeting = `Hello, ${name1}!`;
 console.log(greeting); // Output: Hello, Alice!
 //Destructuring Assignment
-const person = { name: 'Alice', age: 30 };
-const { name, age } = person;
-console.log(name); // Output: Alice
-console.log(age); // Output: 30
+const personObj = { name: 'Alice', age: 30 };
+const { name: name2, age: age2 } = personObj;
+console.log(name2); // Output: Alice
+console.log(age2); // Output: 30
 //Default Parameters
 function greet(name = 'Guest') {
     console.log(`Hello, ${name}!`);
@@ -268,7 +268,7 @@ const result = value ?? defaultValue;
 console.log(result); // Output: Default
 
 //combining features
-const person = {
+const personComb = {
     name: 'Alice',
     age: 30,
     address: {
@@ -276,10 +276,10 @@ const person = {
         city: 'Anytown'
     }
 };
-const { name, age } = person;
-const street = person.address?.street ?? 'Address not available';
-console.log(name); // Output: Alice
-console.log(age); // Output: 30
+const { name: name3, age: age3 } = personComb;
+const street = personComb.address?.street ?? 'Address not available';
+console.log(name3); // Output: Alice
+console.log(age3); // Output: 30
 console.log(street); // Output: 123 Main St
 
 //In summary, ES6 introduced several modern syntax features that enhance the readability and functionality of JavaScript code. These features include let and const for variable declaration, template literals for string interpolation, destructuring assignment for extracting values from objects and arrays, default parameters for function arguments, the spread operator for combining arrays and objects, optional chaining for safe property access, and the nullish coalescing operator for handling null or undefined values. By utilizing these features, developers can write cleaner and more efficient code in JavaScript.
@@ -292,8 +292,8 @@ const person7 = {
         city: 'Anytown'
     }
 };
-const { name, age } = person7;
-const street = person7.address?.street ?? 'Address not available';
-console.log(name); // Output: Alice
-console.log(age); // Output: 30
-console.log(street); // Output: 123 Main St
+const { name: name7, age: age7 } = person7;
+const street7 = person7.address?.street ?? 'Address not available';
+console.log(name7); // Output: Alice
+console.log(age7); // Output: 30
+console.log(street7); // Output: 123 Main St
