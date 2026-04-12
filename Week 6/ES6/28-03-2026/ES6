@@ -1,0 +1,299 @@
+//Arrow Functions & Context
+//Traditional Function
+//Function Declaration
+function add(a, b) {
+    return a + b;
+}
+
+//Function Expression
+const add = function(a, b) {
+    return a + b;
+};
+
+//Arrow Function
+const add = (a, b) => a + b;
+return a + b;
+console.log(add(2, 3)); // Output: 5
+
+//Arrow Functions and Context
+const person = {
+    name: 'Alice',
+    greet: function() {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+};
+person.greet(); // Output: Hello, my name is Alice
+
+//Using Arrow Function
+const person = {
+    name: 'Alice',
+    greet: () => {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+};
+person.greet(); // Output: Hello, my name is undefined
+
+//In the arrow function, 'this' does not refer to the person object, but to the global context, which is why it returns undefined. Arrow functions do not have their own 'this' and instead inherit it from the surrounding scope.
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.greet = function() {
+    console.log(`Hello, my name is ${this.name}`);
+};
+const alice = new Person('Alice');
+alice.greet(); // Output: Hello, my name is Alice
+//Using Arrow Function in Constructor
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.greet = () => {
+    console.log(`Hello, my name is ${this.name}`);
+};
+const alice = new Person('Alice');
+alice.greet(); // Output: Hello, my name is undefined
+//In this case, the arrow function does not have its own 'this' and inherits it from the global context, which is why it returns undefined. Arrow functions are not suitable for methods that rely on 'this' to refer to the object instance.
+function Person(name) {
+    this.name = name;
+    this.greet = function() {
+        console.log(`Hello, my name is ${this.name}`);
+    };
+}
+const alice = new Person('Alice');
+alice.greet(); // Output: Hello, my name is Alice
+//Using Arrow Function for Methods
+function Person(name) {
+    this.name = name;
+    this.greet = () => {
+        console.log(`Hello, my name is ${this.name}`);
+    };
+}
+const alice = new Person('Alice');
+alice.greet(); // Output: Hello, my name is undefined
+//In this case, the arrow function does not have its own 'this' and inherits it from the global context, which is why it returns undefined. Arrow functions are not suitable for methods that rely on 'this' to refer to the object instance.
+
+//In summary, while arrow functions provide a concise syntax, they do not have their own 'this' context and are not suitable for methods that rely on 'this' to refer to the object instance. Traditional function expressions or declarations should be used in such cases to ensure the correct context is maintained.
+
+//arrow functions with objects
+const person = {
+    name: 'Alice',
+    greet: function() {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+};
+person.greet(); // Output: Hello, my name is Alice
+//Using Arrow Function
+const person = {
+    name: 'Alice',
+    greet: () => {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+};
+person.greet(); // Output: Hello, my name is undefined
+//In the arrow function, 'this' does not refer to the person object, but to the global context, which is why it returns undefined. Arrow functions do not have their own 'this' and instead inherit it from the surrounding scope. Therefore, when using arrow functions as methods in objects, they will not have access to the object's properties through 'this'.
+
+//Arrow functions with no parameters
+const greet = () => console.log('Hello, World!');
+greet(); // Output: Hello, World!
+
+//Arrow functions with one parameter
+const greet = name => console.log(`Hello, ${name}!`);
+greet('Alice'); // Output: Hello, Alice!
+//Arrow functions with multiple parameters
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // Output: 5
+
+//Arrow functions with no body
+const greet = () => 'Hello, World!';
+console.log(greet()); // Output: Hello, World!
+//Arrow functions with a body
+const add = (a, b) => {
+    const sum = a + b;
+    return sum;
+};
+console.log(add(2, 3)); // Output: 5
+
+//Arrow functions and 'this' context
+const person = {
+    name: 'Alice',
+    greet: function() {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+};
+person.greet(); // Output: Hello, my name is Alice
+//Using Arrow Function
+const person = {    name: 'Alice',
+    greet: () => {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+};
+person.greet(); // Output: Hello, my name is undefined
+//In the arrow function, 'this' does not refer to the person object, but to the global context, which is why it returns undefined. Arrow functions do not have their own 'this' and instead inherit it from the surrounding scope. Therefore, when using arrow functions as methods in objects, they will not have access to the object's properties through 'this'.
+
+//single paremeter with parentheses
+const greet = (name) => console.log(`Hello, ${name}!`);
+greet('Alice'); // Output: Hello, Alice!
+
+//single parameter without parentheses
+const greet = name => console.log(`Hello, ${name}!`);
+greet('Alice'); // Output: Hello, Alice!
+console.log(greet); // Output: [Function: greet]
+
+//multiple parameters with parentheses
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // Output: 5
+
+//multiple parameters without parentheses (not valid syntax)
+//const add = a, b => a + b; // SyntaxError: Unexpected token ','
+const add = (a, b) => a + b; // Correct syntax with parentheses
+console.log(add(2, 3)); // Output: 5
+
+//traditional function expression
+const add = function(a, b) {
+    return a + b;
+};
+console.log(add(2, 3)); // Output: 5
+
+//arrow function expression
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // Output: 5
+
+//Map and Set Collections
+//Map
+const myMap = new Map();
+myMap.set('key1', 'value1');
+myMap.set('key2', 'value2');
+console.log(myMap.get('key1')); // Output: value1
+console.log(myMap.has('key2')); // Output: true
+myMap.delete('key1');
+console.log(myMap.has('key1')); // Output: false
+//Set
+const mySet = new Set();
+mySet.add(1);
+mySet.add(2);
+mySet.add(2);
+console.log(mySet.has(1)); // Output: true
+console.log(mySet.has(2)); // Output: true
+console.log(mySet.size); // Output: 2
+mySet.delete(1);
+console.log(mySet.has(1)); // Output: false
+
+//building a phone book using Map
+const phoneBook = new Map();
+phoneBook.set('Alice', '123-456-7890');
+phoneBook.set('Bob', '987-654-3210');
+console.log(phoneBook.get('Alice')); // Output: 123-456-7890
+console.log(phoneBook.has('Bob')); // Output: true
+phoneBook.delete('Alice');
+console.log(phoneBook.has('Alice')); // Output: false
+
+//building a unique list of items using Set
+const uniqueItems = new Set();
+uniqueItems.add('apple');
+uniqueItems.add('banana');
+uniqueItems.add('apple');
+console.log(uniqueItems.size); // Output: 2
+console.log(uniqueItems.has('apple')); // Output: true
+console.log(uniqueItems.has('banana')); // Output: true
+uniqueItems.delete('apple');
+console.log(uniqueItems.has('apple')); // Output: false
+
+//removing duplicates from an array using Set
+const numbers = [1, 2, 3, 2, 4, 1];
+const uniqueNumbers = new Set(numbers);
+console.log(uniqueNumbers); // Output: Set { 1, 2, 3, 4 }
+const uniqueNumbersArray = Array.from(uniqueNumbers);
+console.log(uniqueNumbersArray); // Output: [1, 2, 3, 4]
+
+//finding unique characters in a string using Set
+const str = 'hello world';
+const uniqueChars = new Set(str);
+console.log(uniqueChars); // Output: Set { 'h', 'e', 'l', 'o', ' ', 'w', 'r', 'd' }
+const uniqueCharsArray = Array.from(uniqueChars);
+console.log(uniqueCharsArray); // Output: ['h', 'e', 'l', 'o', ' ', 'w', 'r', 'd']  
+
+//implementing set operations using Set
+const setA = new Set([1, 2, 3]);
+const setB = new Set([3, 4, 5]);
+//Union
+const union = new Set([...setA, ...setB]);
+console.log(union); // Output: Set { 1, 2, 3, 4, 5 }
+//Intersection
+const intersection = new Set([...setA].filter(x => setB.has(x)));
+console.log(intersection); // Output: Set { 3 }
+//Difference
+const difference = new Set([...setA].filter(x => !setB.has(x)));
+console.log(difference); // Output: Set { 1, 2 }
+
+//modern syntax features in ES6
+//let and const
+let x = 10;
+const y = 20;
+x = 15; // Valid
+//y = 25; // Error: Assignment to constant variable
+//Template Literals
+const name = 'Alice';
+const greeting = `Hello, ${name}!`;
+console.log(greeting); // Output: Hello, Alice!
+//Destructuring Assignment
+const person = { name: 'Alice', age: 30 };
+const { name, age } = person;
+console.log(name); // Output: Alice
+console.log(age); // Output: 30
+//Default Parameters
+function greet(name = 'Guest') {
+    console.log(`Hello, ${name}!`);
+}
+greet(); // Output: Hello, Guest!
+greet('Alice'); // Output: Hello, Alice!
+//Spread Operator
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const arr3 = [...arr1, ...arr2];
+console.log(arr3); // Output: [1, 2, 3, 4, 5, 6]
+
+//optional chaining
+const person = {
+    name: 'Alice',
+    address: {
+        street: '123 Main St',
+        city: 'Anytown'
+    }
+};
+console.log(person.address?.street); // Output: 123 Main St
+console.log(person.address?.zip); // Output: undefined 
+//Nullish Coalescing Operator
+const value = null;
+const defaultValue = 'Default';
+const result = value ?? defaultValue;
+console.log(result); // Output: Default
+
+//combining features
+const person = {
+    name: 'Alice',
+    age: 30,
+    address: {
+        street: '123 Main St',
+        city: 'Anytown'
+    }
+};
+const { name, age } = person;
+const street = person.address?.street ?? 'Address not available';
+console.log(name); // Output: Alice
+console.log(age); // Output: 30
+console.log(street); // Output: 123 Main St
+
+//In summary, ES6 introduced several modern syntax features that enhance the readability and functionality of JavaScript code. These features include let and const for variable declaration, template literals for string interpolation, destructuring assignment for extracting values from objects and arrays, default parameters for function arguments, the spread operator for combining arrays and objects, optional chaining for safe property access, and the nullish coalescing operator for handling null or undefined values. By utilizing these features, developers can write cleaner and more efficient code in JavaScript.
+
+//combining for safe property access and default values
+const person = {
+    name: 'Alice',
+    address: {
+        street: '123 Main St',
+        city: 'Anytown'
+    }
+};
+const { name, age } = person;
+const street = person.address?.street ?? 'Address not available';
+console.log(name); // Output: Alice
+console.log(age); // Output: 30
+console.log(street); // Output: 123 Main St
