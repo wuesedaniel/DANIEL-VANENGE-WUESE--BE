@@ -1,0 +1,169 @@
+//Promise-based Code
+function fetchData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data = { id: 1, name: 'John Doe' };
+            resolve(data);
+        }, 2000);
+        console.log("Fetching data...");
+    });
+    console.log("This will execute immediately after calling fetchData.");
+}
+
+fetchData()
+    .then(data => {
+        console.log("Data received: ", data);
+    })
+    .catch(error => {
+        console.error("Error fetching data: ", error);
+    });
+    .finally(() => {
+        console.log("Fetch attempt completed.");
+    });
+
+//Async/Await Code
+async function fetchDataAsync() {
+    try {
+        console.log("Fetching data...");
+        const data = await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const data = { id: 1, name: 'John Doe' };
+                resolve(data);
+            }, 2000);
+        });
+        console.log("Data received: ", data);
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    } finally {
+        console.log("Fetch attempt completed.");
+    }
+}
+
+fetchDataAsync();
+
+//Conversion of Promise-based code to Async/Await
+function fetchData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data = { id: 1, name: 'John Doe' };
+            resolve(data);
+        }, 2000);
+        console.log("Fetching data...");
+    });
+    console.log("This will execute immediately after calling fetchData.");
+}
+
+async function fetchDataAsync() {
+    try {
+        console.log("Fetching data...");
+        const data = await fetchData();
+        console.log("Data received: ", data);
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    } finally {
+        console.log("Fetch attempt completed.");
+    }
+}
+
+fetchDataAsync();
+async function fetchDataAsync() {
+    try {
+        console.log("Fetching data...");
+        const data = await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const data = { id: 1, name: 'John Doe' };
+                resolve(data);
+            }, 2000);
+        });
+        console.log("Data received: ", data);
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    } finally {
+        console.log("Fetch attempt completed.");
+    }
+}
+
+fetchDataAsync();
+
+//Error Handling with try/catch
+async function fetchDataWithError() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            setTimeout(() => {
+        console.log("Fetching data...");
+        const data = await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(new Error("Failed to fetch data"));
+            }, 2000);
+        });
+        console.log("Data received: ", response);
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    } finally {
+        console.log("Fetch attempt completed.");
+    }
+}
+
+fetchDataWithError();
+                    reject(new Error("Failed to fetch data"));
+                }, 2000);
+            });
+            console.log("Data received: ", response);
+        }
+        catch (error) {
+            console.error("Error fetching data: ", error);
+        } finally {
+            console.log("Fetch attempt completed.");
+        }
+    }
+
+fetchDataWithError();
+
+//Difference beween sequential and execution patterns
+async function fetchDataSequential() {
+    try {
+        console.log("Fetching data sequentially...");
+        const data1 = await new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ id: 1, name: 'John Doe' });
+            }, 2000);
+        });
+        console.log("Data 1 received: ", data1);
+        const data2 = await new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ id: 2, name: 'Jane Smith' });
+            }, 2000);
+        });
+        console.log("Data 2 received: ", data2);
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    } finally {
+        console.log("Fetch attempt completed.");
+    }
+}
+
+fetchDataSequential();
+async function fetchDataParallel() {
+    try {
+        console.log("Fetching data in parallel...");
+        const promise1 = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ id: 1, name: 'John Doe' });
+            }, 2000);
+        });
+        const promise2 = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ id: 2, name: 'Jane Smith' });
+            }, 2000);
+        });
+        const [data1, data2] = await Promise.all([promise1, promise2]);
+        console.log("Data 1 received: ", data1);
+        console.log("Data 2 received: ", data2);
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    } finally {
+        console.log("Fetch attempt completed.");
+    }
+}
+
+fetchDataParallel();
