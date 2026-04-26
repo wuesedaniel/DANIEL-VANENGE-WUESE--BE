@@ -88,34 +88,19 @@ fetchDataAsync();
 //Error Handling with try/catch
 async function fetchDataWithError() {
     try {
-        const response = await new Promise((resolve, reject) => {
-            setTimeout(() => {
         console.log("Fetching data...");
         const data = await new Promise((resolve, reject) => {
             setTimeout(() => {
                 reject(new Error("Failed to fetch data"));
             }, 2000);
         });
-        console.log("Data received: ", response);
+        console.log("Data received: ", data);
     } catch (error) {
         console.error("Error fetching data: ", error);
     } finally {
         console.log("Fetch attempt completed.");
     }
 }
-
-fetchDataWithError();
-                    reject(new Error("Failed to fetch data"));
-                }, 2000);
-            });
-            console.log("Data received: ", response);
-        }
-        catch (error) {
-            console.error("Error fetching data: ", error);
-        } finally {
-            console.log("Fetch attempt completed.");
-        }
-    }
 
 fetchDataWithError();
 
