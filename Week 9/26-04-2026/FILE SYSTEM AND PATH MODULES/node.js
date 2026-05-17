@@ -151,3 +151,4 @@ const rootDirPath2 = path.join(__dirname, 'sample_dir');
 readDirectoryTree(rootDirPath2);
 console.log("Directory tree structure displayed successfully.");
 console.log("All operations completed successfully.");
+console.log("End of file system and path module operations.");

@@ -1,0 +1,137 @@
+//Event Emmiter Basic Example
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+myEmitter.on('greet', (name) => {
+    console.log(`Hello, ${name}! Welcome to the EventEmitter example.`);
+});
+myEmitter.emit('greet', 'Daniel');
+
+
+//Event Emmiter with multiple listeners
+myEmitter.on('greet', (name) => {
+    console.log(`How are you doing today, ${name}?`);
+});
+myEmitter.emit('greet', 'Daniel');
+
+//Event Emmiter with error handling
+myEmitter.on('error', (err) => {
+    console.error('An error occurred: ', err);
+}); 
+myEmitter.emit('error', new Error('Something went wrong!'));
+
+//Event Emmiter with once method
+myEmitter.once('onlyOnce', () => {
+    console.log('This will only be logged once.');
+});
+myEmitter.emit('onlyOnce');
+myEmitter.emit('onlyOnce'); // This will not trigger the listener again
+console.log('Emitted onlyOnce event twice, but listener should only respond to the first one.');
+
+//Event Emmiter with custom class
+class MyCustomEmitter extends EventEmitter {
+    constructor() {
+        super();
+    }
+}   
+const customEmitter = new MyCustomEmitter();
+customEmitter.on('customEvent', () => {
+    console.log('Custom event triggered!');
+});
+customEmitter.emit('customEvent');
+
+//Event Emmiter with addListener and removeListener
+function listener() {
+    console.log('This is a listener that can be removed.');
+}
+myEmitter.addListener('removableEvent', listener);
+myEmitter.emit('removableEvent');
+myEmitter.removeListener('removableEvent', listener);
+myEmitter.emit('removableEvent'); // This will not trigger the listener as it has been removed
+
+//Event Emmiter with listener count
+console.log('Listener count for greet event: ', myEmitter.listenerCount('greet'));
+
+//Event Emmiter with update listeners
+function newListener() {
+    console.log('This is a new listener for the greet event.');
+}
+myEmitter.on('greet', newListener);
+myEmitter.emit('greet', 'Daniel');
+myEmitter.removeListener('greet', newListener);
+myEmitter.emit('greet', 'Daniel'); // This will not trigger the newListener as it has been removed  
+
+//creating buffers from different sources
+const bufferFromString = Buffer.from('Hello, Buffer!');
+console.log('Buffer from string: ', bufferFromString);
+const bufferFromArray = Buffer.from([72, 101, 108, 108, 111]);
+console.log('Buffer from array: ', bufferFromArray);
+const bufferFromBuffer = Buffer.from(bufferFromString);
+console.log('Buffer from another buffer: ', bufferFromBuffer);
+
+//writing to a buffer
+const buffer = Buffer.alloc(20);
+buffer.write('Hello, Buffer!');
+console.log('Buffer after writing: ', buffer.toString());
+
+//reading from a buffer
+const readBuffer = Buffer.from('Hello, Buffer!');
+console.log('Reading from buffer: ', readBuffer.toString());
+
+//slicing a buffer
+const slicedBuffer = buffer.slice(0, 5);
+console.log('Sliced buffer: ', slicedBuffer.toString());
+
+//concatenating buffers
+const buffer1 = Buffer.from('Hello, ');
+const buffer2 = Buffer.from('Buffer!');
+const concatenatedBuffer = Buffer.concat([buffer1, buffer2]);
+console.log('Concatenated buffer: ', concatenatedBuffer.toString());
+
+//converting between buffers and JSON
+const jsonObject = { message: 'Hello, JSON!' };
+const jsonString = JSON.stringify(jsonObject);
+const jsonBuffer = Buffer.from(jsonString);
+console.log('Buffer from JSON string: ', jsonBuffer);
+const parsedJson = JSON.parse(jsonBuffer.toString());
+console.log('Parsed JSON object: ', parsedJson);
+
+//Log file processor using streams and event to parse, filter and analyze log files in real-time
+const fs = require('fs');
+const readline = require('readline');
+const logFilePath = 'path/to/logfile.log';
+const logStream = fs.createReadStream(logFilePath);
+const rl = readline.createInterface({
+    input: logStream,
+}); 
+rl.on('line', (line) => {
+    // Process each line of the log file
+    console.log('Log line: ', line);
+    // You can add filtering and analysis logic here
+});
+rl.on('close', () => {
+    console.log('Finished processing log file.');
+}); 
+
+//log processor with error handling
+rl.on('error', (err) => {
+    console.error('Error reading log file: ', err);
+});
+
+//event parser with custom events for different log levels
+const logEmitter = new EventEmitter();
+logEmitter.on('info', (message) => {
+    console.log('INFO: ', message);
+});
+logEmitter.on('error', (message) => {
+    console.error('ERROR: ', message);
+}); 
+rl.on('line', (line) => {
+    if (line.includes('ERROR')) {
+        logEmitter.emit('error', line);
+    } else {
+        logEmitter.emit('info', line);
+    }
+});
+console.log('Log processor with custom events for log levels is running.');
+
+
