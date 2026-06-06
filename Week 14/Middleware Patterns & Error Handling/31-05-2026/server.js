@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 // Cookie parser
 app.use(require('cookie-parser')());
+<<<<<<< HEAD
 // Mount routers (only if present) — fall back to index router
 const fs = require('fs');
 const path = require('path');
@@ -32,6 +33,14 @@ if (fs.existsSync(path.join(routesDir, 'posts.js'))) {
 }
 // Error handling middleware
 app.use(require('./middleware/errorHandler'));
+=======
+// Mount routers
+app.use('/api/v1/auth', require('./routes/auth'));
+app.use('/api/v1/users', require('./routes/users'));
+app.use('/api/v1/posts', require('./routes/posts'));
+// Error handling middleware
+app.use(require('./middleware/error'));
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 // Handle unhandled promise rejections
@@ -87,6 +96,18 @@ app.post('/api/v1/auth/logout', (req, res) => {
     res.status(200).json({ success: true, data: {} });
 });
 
+<<<<<<< HEAD
+=======
+app.post('/api/login', (req, res) => {
+    const { email, password } = req.body;
+});
+if (email === 'admin@example.com' && password === 'admin123') {
+    const token = jwt.sign({ id: 1, role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.json({ success: true, token });
+} else {
+    res.status(401).json({ success: false, message: 'Invalid credentials' });
+}
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 
 // Protected route example
 app.get('/api/protected', asyncHandler(async (req, res, next) => {
@@ -125,3 +146,24 @@ app.delete('/api/v1/auth/logout', (req, res) => {
     res.status(200).json({ success: true, data: {} });
 });
 
+<<<<<<< HEAD
+=======
+app.post('/api/v1/auth/login', asyncHandler(async (req, res, next) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return next(new ErrorResponse('Please provide an email and password', 400));
+    }
+    const user = await User.findOne({ email }).select('+password');
+    if (!user) {
+        return next(new ErrorResponse('Invalid credentials', 401));
+    }
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+        return next(new ErrorResponse('Invalid credentials', 401));
+    }
+    const token = user.getSignedJwtToken();
+    res.status(200).json({ success: true, token });
+}
+));
+
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee

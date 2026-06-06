@@ -1,8 +1,12 @@
 # Backend Middleware Architecture Implementation
 
 ## Overview
+<<<<<<< HEAD
 
 Your project now has a complete, production-ready middleware pipeline implementing all 5 required features.
+=======
+Your project now has a complete, production-ready middleware pipeline implementing all 5 required features:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 
 ---
 
@@ -10,16 +14,24 @@ Your project now has a complete, production-ready middleware pipeline implementi
 
 **File:** `middleware/auth.js`
 
+<<<<<<< HEAD
 ## Features
 
+=======
+### Features:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - **Token Extraction**: Extracts JWT from Authorization header (Bearer) or cookies
 - **Token Verification**: Validates JWT signatures and expiry
 - **Protect Routes**: Middleware to enforce authentication on protected endpoints
 - **User Attachment**: Automatically attaches user data to `req.user`
 - **Optional Authentication**: `isAuthenticated` middleware for views that may or may not be authenticated
 
+<<<<<<< HEAD
 ## Usage
 
+=======
+### Usage:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 ```javascript
 // Protect a route - requires valid JWT
 app.get('/api/users', protect, (req, res) => {
@@ -38,15 +50,23 @@ app.get('/profile', isAuthenticated, (req, res) => {
 
 **File:** `middleware/auth.js` - `authorize()` function
 
+<<<<<<< HEAD
 ## Authorization Features
 
+=======
+### Features:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - **Role-Based Access Control**: Check user roles before allowing access
 - **Flexible Roles**: Support for multiple roles (admin, user, etc.)
 - **Granular Permissions**: Restrict access based on user role
 - **Detailed Logging**: Logs unauthorized access attempts
 
+<<<<<<< HEAD
 ## Authorization Usage
 
+=======
+### Usage:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 ```javascript
 // Only admins can delete users
 app.delete('/api/users/:id', protect, authorize('admin'), deleteUserHandler);
@@ -55,8 +75,12 @@ app.delete('/api/users/:id', protect, authorize('admin'), deleteUserHandler);
 app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandler);
 ```
 
+<<<<<<< HEAD
 ## User Model
 
+=======
+### User Model:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - `role` field: enum ['user', 'admin'], default 'user'
 - Users now have role-based access differentiation
 
@@ -66,10 +90,16 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 
 **File:** `middleware/logger.js`
 
+<<<<<<< HEAD
 ## Components
 
 ### Winston Logger
 
+=======
+### Components:
+
+#### Winston Logger:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - **Log Levels**: error, warn, info, http, debug
 - **Log Files**:
   - `logs/error.log` - Error level logs only
@@ -79,23 +109,36 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 - **Format**: Timestamp, level, message, metadata
 - **Development Console**: Pretty-printed colored output
 
+<<<<<<< HEAD
 ### Morgan HTTP Logger
 
+=======
+#### Morgan HTTP Logger:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - **HTTP Request Logging**: Logs all HTTP requests
 - **Integration**: Writes to Winston logger
 - **Format**: `METHOD :url HTTP/STATUS - Response Time ms`
 
+<<<<<<< HEAD
 ## Log Levels
 
+=======
+### Log Levels:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - `error`: Critical errors
 - `warn`: Warnings and suspicious activity
 - `info`: General information
 - `http`: HTTP requests (Morgan)
 - `debug`: Detailed debugging information
 
+<<<<<<< HEAD
 ## Example Logs
 
 ```text
+=======
+### Example Logs:
+```
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 2026-06-06 13:48:23 [info]: Core middleware initialized (CORS, body-parser, cookie-parser)
 2026-06-06 13:48:23 [info]: Server started on http://localhost:3001
 2026-06-06 13:48:23 [error]: Token verification failed: JsonWebTokenError
@@ -108,6 +151,7 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 
 **File:** `middleware/rateLimiter.js`
 
+<<<<<<< HEAD
 ## Three Tier Strategy
 
 ### General Limiter (Applied to all routes)
@@ -117,10 +161,20 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 
 ### Auth Limiter (Applies to /api/auth/login)
 
+=======
+### Three Tier Strategy:
+
+#### General Limiter (Applied to all routes)
+- **Limit**: 100 requests per 15 minutes
+- **Purpose**: Basic DDoS protection
+
+#### Auth Limiter (Applies to /api/auth/login)
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - **Limit**: 5 requests per 15 minutes
 - **Skip**: Successful requests don't count
 - **Purpose**: Brute force attack prevention
 
+<<<<<<< HEAD
 ### API Limiter (Applies to /api/*)
 
 - **Limit**: 1000 requests per hour
@@ -128,6 +182,13 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 
 ## Response
 
+=======
+#### API Limiter (Applies to /api/*)
+- **Limit**: 1000 requests per hour
+- **Purpose**: General API rate limiting
+
+### Response:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 ```json
 {
   "success": false,
@@ -135,8 +196,12 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 }
 ```
 
+<<<<<<< HEAD
 ## Key Features
 
+=======
+### Key Features:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - Tracks by IP address
 - Returns HTTP 429 (Too Many Requests)
 - Logs rate limit violations
@@ -148,9 +213,15 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 
 **File:** `app.js`
 
+<<<<<<< HEAD
 ## Middleware Stack Order
 
 ```text
+=======
+### Middleware Stack Order:
+
+```
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 1. Morgan HTTP Logger
    ↓
 2. CORS Middleware
@@ -179,8 +250,12 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 10. Centralized Error Handler
 ```
 
+<<<<<<< HEAD
 ## Error Handling Features
 
+=======
+### Error Handling Features:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - **CastError**: Invalid MongoDB IDs
 - **Duplicate Key**: MongoDB unique constraint violations
 - **JWT Errors**: Invalid/expired tokens
@@ -188,8 +263,12 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 - **Custom Errors**: ErrorResponse class for consistent error formatting
 - **Stack Traces**: In development mode only
 
+<<<<<<< HEAD
 ## Response Format
 
+=======
+### Response Format:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 ```javascript
 // Success
 {
@@ -210,6 +289,7 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 
 ## Middleware Files Created
 
+<<<<<<< HEAD
 ### Core Utilities
 
 - **`utils/errorResponse.js`** - Custom error class for consistent error handling
@@ -217,14 +297,25 @@ app.get('/api/reports', protect, authorize('admin', 'manager'), getReportsHandle
 
 ### Middleware Modules
 
+=======
+### Core Utilities:
+- **`utils/errorResponse.js`** - Custom error class for consistent error handling
+- **`middleware/async.js`** - Async error wrapper to catch promise rejections
+
+### Middleware Modules:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - **`middleware/logger.js`** - Winston & Morgan logging setup
 - **`middleware/errorHandler.js`** - Centralized error handling
 - **`middleware/rateLimiter.js`** - Three-tier rate limiting
 - **`middleware/validator.js`** - Request validation with express-validator
 - **`middleware/auth.js`** - Authentication & authorization (refactored)
 
+<<<<<<< HEAD
 ### Updated Files
 
+=======
+### Updated Files:
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - **`models/User.js`** - Enhanced with bcryptjs hashing & JWT methods
 - **`app.js`** - Complete middleware pipeline implementation
 - **`package.json`** - New dependencies added
@@ -271,8 +362,12 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
 ## User Authentication Flow
 
 ### 1. User Registration
+<<<<<<< HEAD
 
 ```text
+=======
+```
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 POST /api/users
 {
   "username": "john_doe",
@@ -281,30 +376,47 @@ POST /api/users
   "role": "user" // optional, defaults to 'user'
 }
 ```
+<<<<<<< HEAD
 
+=======
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - Password is hashed with bcryptjs (10 salt rounds)
 - User record stored in MongoDB
 
 ### 2. User Login
+<<<<<<< HEAD
 
 ```text
+=======
+```
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 POST /api/auth/login
 {
   "email": "john@example.com",
   "password": "password123"
 }
 ```
+<<<<<<< HEAD
 
+=======
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - Returns JWT token with user ID and role encoded
 - Token expires in 7 days (configurable)
 
 ### 3. Protected Route Access
+<<<<<<< HEAD
 
 ```text
 GET /api/users
 Header: Authorization: Bearer <JWT_TOKEN>
 ```
 
+=======
+```
+GET /api/users
+Header: Authorization: Bearer <JWT_TOKEN>
+```
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 - `protect` middleware verifies JWT
 - `authorize('admin')` checks user role
 - Only admins can access
@@ -349,13 +461,19 @@ Rate Limit: Auth limiter (5 attempts/15 min)
 ## Testing the Implementation
 
 ### Health Check
+<<<<<<< HEAD
 
+=======
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 ```bash
 curl http://localhost:3001/
 ```
 
 ### Create User
+<<<<<<< HEAD
 
+=======
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 ```bash
 curl -X POST http://localhost:3001/api/users \
   -H "Content-Type: application/json" \
@@ -367,7 +485,10 @@ curl -X POST http://localhost:3001/api/users \
 ```
 
 ### Get Users (Requires Auth)
+<<<<<<< HEAD
 
+=======
+>>>>>>> f09daa4543a0c4b05347d066be0f7cdbe4aec8ee
 ```bash
 curl -H "Authorization: Bearer <TOKEN>" \
   http://localhost:3001/api/users
